@@ -1,4 +1,7 @@
-﻿using EstoqueEFCrud.Views;
+﻿using EstoqueEFCrud.Repository;
+using EstoqueEFCrud.Services;
+using EstoqueEFCrud.Services.Contracts;
+using EstoqueEFCrud.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
