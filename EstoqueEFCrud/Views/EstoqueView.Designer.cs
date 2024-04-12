@@ -30,10 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EstoqueView));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.TbPrincipal = new System.Windows.Forms.TabControl();
-            this.tabPageProduto = new System.Windows.Forms.TabPage();
+            this.tabPageLista = new System.Windows.Forms.TabPage();
             this.BtnDeletarCat = new System.Windows.Forms.Button();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.BtnEditarCat = new System.Windows.Forms.Button();
@@ -41,37 +44,20 @@
             this.BtnDeletarProduto = new System.Windows.Forms.Button();
             this.BtnEditarProduto = new System.Windows.Forms.Button();
             this.BtnAdicionarProduto = new System.Windows.Forms.Button();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.dvgProdutos = new System.Windows.Forms.DataGridView();
+            this.clmCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPreco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnProcurar = new System.Windows.Forms.Button();
-            this.CboxSelecionaCat = new System.Windows.Forms.ComboBox();
+            this.CboxListaPrincipal = new System.Windows.Forms.ComboBox();
             this.TxProcuraProd = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tabPageCategoria = new System.Windows.Forms.TabPage();
-            this.BtnSalvarCat = new System.Windows.Forms.Button();
-            this.BtnCancelarCat = new System.Windows.Forms.Button();
-            this.TxNomeCat = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tabPageAddProd = new System.Windows.Forms.TabPage();
-            this.BtSalvarProd = new System.Windows.Forms.Button();
-            this.BtCancelarProd = new System.Windows.Forms.Button();
-            this.NudEstoque = new System.Windows.Forms.NumericUpDown();
-            this.CboxCategoriaProd = new System.Windows.Forms.ComboBox();
-            this.TxNomeProd = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.TxPreco = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.TbPrincipal.SuspendLayout();
-            this.tabPageProduto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            this.tabPageCategoria.SuspendLayout();
-            this.tabPageAddProd.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudEstoque)).BeginInit();
+            this.tabPageLista.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgProdutos)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -97,9 +83,7 @@
             // 
             // TbPrincipal
             // 
-            this.TbPrincipal.Controls.Add(this.tabPageProduto);
-            this.TbPrincipal.Controls.Add(this.tabPageCategoria);
-            this.TbPrincipal.Controls.Add(this.tabPageAddProd);
+            this.TbPrincipal.Controls.Add(this.tabPageLista);
             this.TbPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TbPrincipal.Location = new System.Drawing.Point(0, 60);
             this.TbPrincipal.Multiline = true;
@@ -108,28 +92,28 @@
             this.TbPrincipal.Size = new System.Drawing.Size(798, 390);
             this.TbPrincipal.TabIndex = 1;
             // 
-            // tabPageProduto
+            // tabPageLista
             // 
-            this.tabPageProduto.Controls.Add(this.BtnDeletarCat);
-            this.tabPageProduto.Controls.Add(this.BtnEditarCat);
-            this.tabPageProduto.Controls.Add(this.BtnAdicionarCat);
-            this.tabPageProduto.Controls.Add(this.BtnDeletarProduto);
-            this.tabPageProduto.Controls.Add(this.BtnEditarProduto);
-            this.tabPageProduto.Controls.Add(this.BtnAdicionarProduto);
-            this.tabPageProduto.Controls.Add(this.dataGridView);
-            this.tabPageProduto.Controls.Add(this.BtnProcurar);
-            this.tabPageProduto.Controls.Add(this.CboxSelecionaCat);
-            this.tabPageProduto.Controls.Add(this.TxProcuraProd);
-            this.tabPageProduto.Controls.Add(this.label3);
-            this.tabPageProduto.Controls.Add(this.label2);
-            this.tabPageProduto.Font = new System.Drawing.Font("Inter", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPageProduto.Location = new System.Drawing.Point(4, 22);
-            this.tabPageProduto.Name = "tabPageProduto";
-            this.tabPageProduto.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageProduto.Size = new System.Drawing.Size(790, 364);
-            this.tabPageProduto.TabIndex = 0;
-            this.tabPageProduto.Text = "Produtos";
-            this.tabPageProduto.UseVisualStyleBackColor = true;
+            this.tabPageLista.Controls.Add(this.BtnDeletarCat);
+            this.tabPageLista.Controls.Add(this.BtnEditarCat);
+            this.tabPageLista.Controls.Add(this.BtnAdicionarCat);
+            this.tabPageLista.Controls.Add(this.BtnDeletarProduto);
+            this.tabPageLista.Controls.Add(this.BtnEditarProduto);
+            this.tabPageLista.Controls.Add(this.BtnAdicionarProduto);
+            this.tabPageLista.Controls.Add(this.dvgProdutos);
+            this.tabPageLista.Controls.Add(this.BtnProcurar);
+            this.tabPageLista.Controls.Add(this.CboxListaPrincipal);
+            this.tabPageLista.Controls.Add(this.TxProcuraProd);
+            this.tabPageLista.Controls.Add(this.label3);
+            this.tabPageLista.Controls.Add(this.label2);
+            this.tabPageLista.Font = new System.Drawing.Font("Inter", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPageLista.Location = new System.Drawing.Point(4, 22);
+            this.tabPageLista.Name = "tabPageLista";
+            this.tabPageLista.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageLista.Size = new System.Drawing.Size(790, 364);
+            this.tabPageLista.TabIndex = 0;
+            this.tabPageLista.Text = "Produtos";
+            this.tabPageLista.UseVisualStyleBackColor = true;
             // 
             // BtnDeletarCat
             // 
@@ -141,6 +125,7 @@
             this.BtnDeletarCat.Size = new System.Drawing.Size(40, 22);
             this.BtnDeletarCat.TabIndex = 8;
             this.BtnDeletarCat.UseVisualStyleBackColor = true;
+            this.BtnDeletarCat.Click += new System.EventHandler(this.BtDeletarCat);
             // 
             // imageList
             // 
@@ -160,6 +145,7 @@
             this.BtnEditarCat.Size = new System.Drawing.Size(40, 22);
             this.BtnEditarCat.TabIndex = 7;
             this.BtnEditarCat.UseVisualStyleBackColor = true;
+            this.BtnEditarCat.Click += new System.EventHandler(this.BtEditarCategoria);
             // 
             // BtnAdicionarCat
             // 
@@ -171,7 +157,6 @@
             this.BtnAdicionarCat.Size = new System.Drawing.Size(40, 22);
             this.BtnAdicionarCat.TabIndex = 6;
             this.BtnAdicionarCat.UseVisualStyleBackColor = true;
-            this.BtnAdicionarCat.Click += new System.EventHandler(this.BtAdicionarCat);
             // 
             // BtnDeletarProduto
             // 
@@ -183,6 +168,7 @@
             this.BtnDeletarProduto.TabIndex = 5;
             this.BtnDeletarProduto.Text = "Deletar";
             this.BtnDeletarProduto.UseVisualStyleBackColor = false;
+            this.BtnDeletarProduto.Click += new System.EventHandler(this.BtDeletarProduto);
             // 
             // BtnEditarProduto
             // 
@@ -194,6 +180,7 @@
             this.BtnEditarProduto.TabIndex = 4;
             this.BtnEditarProduto.Text = "Editar";
             this.BtnEditarProduto.UseVisualStyleBackColor = false;
+            this.BtnEditarProduto.Click += new System.EventHandler(this.BtEditarProdAsync);
             // 
             // BtnAdicionarProduto
             // 
@@ -205,15 +192,78 @@
             this.BtnAdicionarProduto.TabIndex = 3;
             this.BtnAdicionarProduto.Text = "Adicionar";
             this.BtnAdicionarProduto.UseVisualStyleBackColor = false;
+            this.BtnAdicionarProduto.Click += new System.EventHandler(this.BtAdicionarProduto);
             // 
-            // dataGridView
+            // dvgProdutos
             // 
-            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(27, 135);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(636, 216);
-            this.dataGridView.TabIndex = 5;
+            this.dvgProdutos.AllowUserToAddRows = false;
+            this.dvgProdutos.AllowUserToDeleteRows = false;
+            this.dvgProdutos.AllowUserToResizeColumns = false;
+            this.dvgProdutos.AllowUserToResizeRows = false;
+            this.dvgProdutos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dvgProdutos.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dvgProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvgProdutos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmCodigo,
+            this.clmNome,
+            this.clmPreco,
+            this.clmEstoque});
+            this.dvgProdutos.Location = new System.Drawing.Point(27, 135);
+            this.dvgProdutos.Name = "dvgProdutos";
+            this.dvgProdutos.ReadOnly = true;
+            this.dvgProdutos.RowHeadersVisible = false;
+            this.dvgProdutos.RowHeadersWidth = 51;
+            this.dvgProdutos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dvgProdutos.Size = new System.Drawing.Size(636, 216);
+            this.dvgProdutos.TabIndex = 5;
+            this.dvgProdutos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvgDoubleClick);
+            // 
+            // clmCodigo
+            // 
+            this.clmCodigo.DataPropertyName = "IdProduto";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.Format = "D4";
+            this.clmCodigo.DefaultCellStyle = dataGridViewCellStyle7;
+            this.clmCodigo.HeaderText = "Código";
+            this.clmCodigo.MinimumWidth = 6;
+            this.clmCodigo.Name = "clmCodigo";
+            this.clmCodigo.ReadOnly = true;
+            this.clmCodigo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmCodigo.Width = 70;
+            // 
+            // clmNome
+            // 
+            this.clmNome.DataPropertyName = "Nome";
+            this.clmNome.HeaderText = "Nome do Produto";
+            this.clmNome.Name = "clmNome";
+            this.clmNome.ReadOnly = true;
+            this.clmNome.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmNome.Width = 150;
+            // 
+            // clmPreco
+            // 
+            this.clmPreco.DataPropertyName = "Preco";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Format = "C2";
+            this.clmPreco.DefaultCellStyle = dataGridViewCellStyle8;
+            this.clmPreco.HeaderText = "Preço";
+            this.clmPreco.MinimumWidth = 6;
+            this.clmPreco.Name = "clmPreco";
+            this.clmPreco.ReadOnly = true;
+            this.clmPreco.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // clmEstoque
+            // 
+            this.clmEstoque.DataPropertyName = "Estoque";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.Format = "D4";
+            this.clmEstoque.DefaultCellStyle = dataGridViewCellStyle9;
+            this.clmEstoque.HeaderText = "Estoque";
+            this.clmEstoque.Name = "clmEstoque";
+            this.clmEstoque.ReadOnly = true;
+            this.clmEstoque.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // BtnProcurar
             // 
@@ -227,13 +277,16 @@
             this.BtnProcurar.Text = "Procurar";
             this.BtnProcurar.UseVisualStyleBackColor = false;
             // 
-            // CboxSelecionaCat
+            // CboxListaPrincipal
             // 
-            this.CboxSelecionaCat.FormattingEnabled = true;
-            this.CboxSelecionaCat.Location = new System.Drawing.Point(27, 37);
-            this.CboxSelecionaCat.Name = "CboxSelecionaCat";
-            this.CboxSelecionaCat.Size = new System.Drawing.Size(200, 22);
-            this.CboxSelecionaCat.TabIndex = 0;
+            this.CboxListaPrincipal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboxListaPrincipal.FormattingEnabled = true;
+            this.CboxListaPrincipal.Location = new System.Drawing.Point(27, 37);
+            this.CboxListaPrincipal.Name = "CboxListaPrincipal";
+            this.CboxListaPrincipal.Size = new System.Drawing.Size(200, 22);
+            this.CboxListaPrincipal.Sorted = true;
+            this.CboxListaPrincipal.TabIndex = 0;
+            this.CboxListaPrincipal.SelectedIndexChanged += new System.EventHandler(this.CboxFiltraProdutos);
             // 
             // TxProcuraProd
             // 
@@ -263,201 +316,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Selecione uma categoria:";
             // 
-            // tabPageCategoria
-            // 
-            this.tabPageCategoria.Controls.Add(this.BtnSalvarCat);
-            this.tabPageCategoria.Controls.Add(this.BtnCancelarCat);
-            this.tabPageCategoria.Controls.Add(this.TxNomeCat);
-            this.tabPageCategoria.Controls.Add(this.label6);
-            this.tabPageCategoria.Controls.Add(this.label5);
-            this.tabPageCategoria.Font = new System.Drawing.Font("Inter", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPageCategoria.Location = new System.Drawing.Point(4, 22);
-            this.tabPageCategoria.Name = "tabPageCategoria";
-            this.tabPageCategoria.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCategoria.Size = new System.Drawing.Size(790, 364);
-            this.tabPageCategoria.TabIndex = 1;
-            this.tabPageCategoria.Text = "Categorias";
-            this.tabPageCategoria.UseVisualStyleBackColor = true;
-            // 
-            // BtnSalvarCat
-            // 
-            this.BtnSalvarCat.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.BtnSalvarCat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSalvarCat.Font = new System.Drawing.Font("Inter", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSalvarCat.Location = new System.Drawing.Point(418, 250);
-            this.BtnSalvarCat.Name = "BtnSalvarCat";
-            this.BtnSalvarCat.Size = new System.Drawing.Size(112, 42);
-            this.BtnSalvarCat.TabIndex = 1;
-            this.BtnSalvarCat.Text = "Salvar";
-            this.BtnSalvarCat.UseVisualStyleBackColor = true;
-            this.BtnSalvarCat.Click += new System.EventHandler(this.Btn_SalvarCat_Click);
-            // 
-            // BtnCancelarCat
-            // 
-            this.BtnCancelarCat.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.BtnCancelarCat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCancelarCat.Font = new System.Drawing.Font("Inter", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelarCat.Location = new System.Drawing.Point(285, 250);
-            this.BtnCancelarCat.Name = "BtnCancelarCat";
-            this.BtnCancelarCat.Size = new System.Drawing.Size(112, 42);
-            this.BtnCancelarCat.TabIndex = 2;
-            this.BtnCancelarCat.Text = "Cancelar";
-            this.BtnCancelarCat.UseVisualStyleBackColor = true;
-            // 
-            // TxNomeCat
-            // 
-            this.TxNomeCat.Location = new System.Drawing.Point(27, 94);
-            this.TxNomeCat.Name = "TxNomeCat";
-            this.TxNomeCat.Size = new System.Drawing.Size(212, 21);
-            this.TxNomeCat.TabIndex = 0;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Inter", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(27, 74);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(159, 19);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Nome da categoria:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Inter", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(333, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(195, 23);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Adicionar Categoria";
-            // 
-            // tabPageAddProd
-            // 
-            this.tabPageAddProd.Controls.Add(this.TxPreco);
-            this.tabPageAddProd.Controls.Add(this.BtSalvarProd);
-            this.tabPageAddProd.Controls.Add(this.BtCancelarProd);
-            this.tabPageAddProd.Controls.Add(this.NudEstoque);
-            this.tabPageAddProd.Controls.Add(this.CboxCategoriaProd);
-            this.tabPageAddProd.Controls.Add(this.TxNomeProd);
-            this.tabPageAddProd.Controls.Add(this.label11);
-            this.tabPageAddProd.Controls.Add(this.label10);
-            this.tabPageAddProd.Controls.Add(this.label9);
-            this.tabPageAddProd.Controls.Add(this.label8);
-            this.tabPageAddProd.Controls.Add(this.label7);
-            this.tabPageAddProd.Location = new System.Drawing.Point(4, 22);
-            this.tabPageAddProd.Name = "tabPageAddProd";
-            this.tabPageAddProd.Size = new System.Drawing.Size(790, 364);
-            this.tabPageAddProd.TabIndex = 2;
-            this.tabPageAddProd.Text = "Add Prod";
-            this.tabPageAddProd.UseVisualStyleBackColor = true;
-            // 
-            // BtSalvarProd
-            // 
-            this.BtSalvarProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtSalvarProd.Font = new System.Drawing.Font("Inter", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtSalvarProd.Location = new System.Drawing.Point(418, 250);
-            this.BtSalvarProd.Name = "BtSalvarProd";
-            this.BtSalvarProd.Size = new System.Drawing.Size(112, 42);
-            this.BtSalvarProd.TabIndex = 11;
-            this.BtSalvarProd.Text = "Salvar";
-            this.BtSalvarProd.UseVisualStyleBackColor = true;
-            // 
-            // BtCancelarProd
-            // 
-            this.BtCancelarProd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtCancelarProd.Font = new System.Drawing.Font("Inter", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtCancelarProd.Location = new System.Drawing.Point(285, 250);
-            this.BtCancelarProd.Name = "BtCancelarProd";
-            this.BtCancelarProd.Size = new System.Drawing.Size(112, 42);
-            this.BtCancelarProd.TabIndex = 10;
-            this.BtCancelarProd.Text = "Cancelar";
-            this.BtCancelarProd.UseVisualStyleBackColor = true;
-            // 
-            // NudEstoque
-            // 
-            this.NudEstoque.Location = new System.Drawing.Point(301, 97);
-            this.NudEstoque.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-            this.NudEstoque.Name = "NudEstoque";
-            this.NudEstoque.Size = new System.Drawing.Size(60, 20);
-            this.NudEstoque.TabIndex = 1;
-            // 
-            // CboxCategoriaProd
-            // 
-            this.CboxCategoriaProd.FormattingEnabled = true;
-            this.CboxCategoriaProd.Location = new System.Drawing.Point(27, 158);
-            this.CboxCategoriaProd.Name = "CboxCategoriaProd";
-            this.CboxCategoriaProd.Size = new System.Drawing.Size(212, 21);
-            this.CboxCategoriaProd.TabIndex = 2;
-            // 
-            // TxNomeProd
-            // 
-            this.TxNomeProd.Location = new System.Drawing.Point(27, 97);
-            this.TxNomeProd.Name = "TxNomeProd";
-            this.TxNomeProd.Size = new System.Drawing.Size(212, 20);
-            this.TxNomeProd.TabIndex = 0;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(27, 135);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(163, 20);
-            this.label11.TabIndex = 5;
-            this.label11.Text = "Categoria do produto:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(301, 135);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(135, 20);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "Preço do produto:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(301, 74);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(160, 20);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Quantidade Estoque:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(27, 74);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(136, 20);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Nome do produto:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Inter", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(348, 20);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(179, 23);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Adicionar Produto";
-            // 
-            // TxPreco
-            // 
-            this.TxPreco.Location = new System.Drawing.Point(301, 159);
-            this.TxPreco.MaxLength = 99999;
-            this.TxPreco.Name = "TxPreco";
-            this.TxPreco.Size = new System.Drawing.Size(60, 20);
-            this.TxPreco.TabIndex = 12;
-            // 
             // EstoqueView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,18 +324,15 @@
             this.Controls.Add(this.TbPrincipal);
             this.Controls.Add(this.panel1);
             this.Name = "EstoqueView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Controle de Estoque";
+            this.Load += new System.EventHandler(this.FormLoad);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.TbPrincipal.ResumeLayout(false);
-            this.tabPageProduto.ResumeLayout(false);
-            this.tabPageProduto.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            this.tabPageCategoria.ResumeLayout(false);
-            this.tabPageCategoria.PerformLayout();
-            this.tabPageAddProd.ResumeLayout(false);
-            this.tabPageAddProd.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudEstoque)).EndInit();
+            this.tabPageLista.ResumeLayout(false);
+            this.tabPageLista.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dvgProdutos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -490,34 +345,20 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TxProcuraProd;
         private System.Windows.Forms.Button BtnProcurar;
-        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridView dvgProdutos;
         private System.Windows.Forms.Button BtnDeletarProduto;
         private System.Windows.Forms.Button BtnEditarProduto;
         private System.Windows.Forms.Button BtnAdicionarProduto;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox TxNomeCat;
-        private System.Windows.Forms.Button BtnCancelarCat;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox TxNomeProd;
-        private System.Windows.Forms.ComboBox CboxCategoriaProd;
-        private System.Windows.Forms.NumericUpDown NudEstoque;
-        private System.Windows.Forms.Button BtSalvarProd;
-        private System.Windows.Forms.Button BtCancelarProd;
         private System.Windows.Forms.Button BtnDeletarCat;
         private System.Windows.Forms.Button BtnEditarCat;
         private System.Windows.Forms.ImageList imageList;
         public System.Windows.Forms.Button BtnAdicionarCat;
         public System.Windows.Forms.TabControl TbPrincipal;
-        public System.Windows.Forms.Button BtnSalvarCat;
-        public System.Windows.Forms.TabPage tabPageProduto;
-        public System.Windows.Forms.TabPage tabPageCategoria;
-        public System.Windows.Forms.TabPage tabPageAddProd;
-        private System.Windows.Forms.TextBox TxPreco;
-        public System.Windows.Forms.ComboBox CboxSelecionaCat;
+        public System.Windows.Forms.TabPage tabPageLista;
+        public System.Windows.Forms.ComboBox CboxListaPrincipal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmCodigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPreco;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmEstoque;
     }
 }
