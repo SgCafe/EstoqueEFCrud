@@ -15,7 +15,7 @@ namespace EstoqueEFCrud.Services.Contracts
         Task EditarCategoria(CategoriaModel model);
         Task DeletarCategoria(int id);
 
-        Task<List<ProdutoModel>> TodosProdutos(int idCategoria);
+        Task<IList<ProdutoModel>> TodosProdutos(int idCategoria);
         Task AdicionarProduto(ProdutoModel produto);
         Task EditarProduto(ProdutoModel produto);
         Task DeletarProduto(int id);

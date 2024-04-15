@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Dapper;
 
 namespace EstoqueEFCrud.Services
 {
@@ -24,8 +25,9 @@ namespace EstoqueEFCrud.Services
             {
                 using (var context = new EstoqueContext())
                 {
-                    var listaCategorias = await context.Categorias.ToListAsync();
-                    return listaCategorias;
+                    var connection = context.Database.GetDbConnection();
+                    var listaCategorias = await connection.QueryAsync<CategoriaModel>("SELECT * FROM Categorias");
+                    return listaCategorias.ToList();
                 }
             }
             catch (Exception)
@@ -81,7 +83,6 @@ namespace EstoqueEFCrud.Services
                     var categoria = new CategoriaModel { IdCategoria = id };
                     context.Attach(categoria);
                     context.Entry(categoria).State = EntityState.Deleted;
-                    //context.Remove(categoria);
                     await context.SaveChangesAsync();
                 }
             }
@@ -95,17 +96,24 @@ namespace EstoqueEFCrud.Services
 
         #region Produtos
 
-        public async Task<List<ProdutoModel>> TodosProdutos(int idCategoria)
+        public async Task<IList<ProdutoModel>> TodosProdutos(int idCategoria)
         {
             try
             {
                 using (var context = new EstoqueContext())
                 {
-                    var listaProdutos = await context.Produtos
-                    .Where(x => x.IdCategoria == idCategoria)
-                    .Include(x => x.Categoria)
-                    .ToListAsync();
-                    return listaProdutos;
+                    var connection = context.Database.GetDbConnection();
+
+                    var query = @"
+                        SELECT p.*, c.Nome AS CategoriaNome
+                        From Produtos p INNER JOIN Categorias c
+                        ON p.IdCategoria = c.IdCategoria
+                        WHERE p.IdCategoria = @IdCategoria";
+
+                    var listaProdutos = await connection.QueryAsync<ProdutoModel>(
+                        query,
+                        new {IdCategoria = idCategoria});
+                    return listaProdutos.ToList();
                 }
             }
             catch (Exception)
