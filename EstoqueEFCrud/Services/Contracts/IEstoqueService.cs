@@ -20,5 +20,7 @@ namespace EstoqueEFCrud.Services.Contracts
         Task EditarProduto(ProdutoModel produto);
         Task DeletarProduto(int id);
 
+        Task<List<ProdutoModel>> BuscarProdutosPorNome(string nome);
+
     }
 }

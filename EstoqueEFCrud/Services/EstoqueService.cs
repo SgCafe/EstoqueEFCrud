@@ -110,7 +110,6 @@ namespace EstoqueEFCrud.Services
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -168,6 +167,25 @@ namespace EstoqueEFCrud.Services
                     context.Attach(produtoDeletar);
                     context.Entry(produtoDeletar).State = EntityState.Deleted;
                     await context.SaveChangesAsync();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<List<ProdutoModel>> BuscarProdutosPorNome(string nome)
+        {
+            try
+            {
+                using(var context = new EstoqueContext())
+                {
+                    return await context.Produtos
+                        .Where(x => x.Nome.Contains(nome))
+                        .Include(c => c.Categoria)
+                        .ToListAsync();
                 }
             }
             catch (Exception)

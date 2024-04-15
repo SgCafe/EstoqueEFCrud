@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EstoqueEFCrud.Services;
+using EstoqueEFCrud.Services.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,13 +12,24 @@ using System.Windows.Forms;
 
 namespace EstoqueEFCrud.Views
 {
-    public partial class Produto : Form
+    public partial class FormCadastrarProd : Form
     {
-        public Produto()
+        private readonly IEstoqueService _serice;
+
+        public FormCadastrarProd()
         {
             InitializeComponent();
+            _serice = new EstoqueService();
+            AtualizarCboxProd();
         }
 
+        private async void AtualizarCboxProd()
+        {
+            var produtos = await _serice.TodasCategorias();
+            CboxProd.DataSource = produtos;
+            CboxProd.DisplayMember = "Nome";
+            CboxProd.ValueMember = "IdCategoria";
+        }
 
     }
 }
