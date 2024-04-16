@@ -70,7 +70,7 @@ namespace EstoqueEFCrud.Services
             {
                 using (var context = new EstoqueContext())
                 {
-                    var categoriaExiste = context.Categorias.Any(x => x.Nome.Contains(categoria.Nome));
+                    var categoriaExiste = context.Categorias.Any(x => x.Nome == categoria.Nome && x.IdCategoria != categoria.IdCategoria);
 
                     if (!categoriaExiste)
                     {

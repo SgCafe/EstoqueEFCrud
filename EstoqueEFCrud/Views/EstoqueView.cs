@@ -229,8 +229,10 @@ namespace EstoqueEFCrud.Views
                         };
 
                         await _service.EditarProduto(produtoAtualizado);
-                        CboxListaPrincipal.SelectedIndex = formProd.CboxProd.SelectedIndex;
+
                         await AtualizarCboxCategorias();
+                        CboxListaPrincipal.SelectedIndex = formProd.CboxProd.SelectedIndex;
+
                     }
                 }
             }
