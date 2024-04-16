@@ -31,5 +31,12 @@ namespace EstoqueEFCrud.Views
             CboxProd.ValueMember = "IdCategoria";
         }
 
+        private void txBoxKP(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

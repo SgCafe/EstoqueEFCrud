@@ -32,7 +32,6 @@ namespace EstoqueEFCrud.Services
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -43,15 +42,25 @@ namespace EstoqueEFCrud.Services
             {
                 using (var context = new EstoqueContext())
                 {
-                    var novaCategoria = new CategoriaModel { Nome = categoria.Nome };
-                    context.Categorias.Add(novaCategoria);
-                    await context.SaveChangesAsync();
+                    var categoriaExiste = context.Categorias.Any(x => x.Nome == categoria.Nome);
+
+                    if (!categoriaExiste)
+                    {
+                        var novaCategoria = new CategoriaModel { Nome = categoria.Nome };
+                        context.Categorias.Add(novaCategoria);
+                        await context.SaveChangesAsync();
+
+                        MessageBox.Show("Categoria adicionada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("A Categoria já existe.", "Erro ao adicionar Categoria", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -61,16 +70,26 @@ namespace EstoqueEFCrud.Services
             {
                 using (var context = new EstoqueContext())
                 {
-                    var categoriaSelecionada = new CategoriaModel { IdCategoria = categoria.IdCategoria, Nome = categoria.Nome, Produtos = categoria.Produtos };
-                    context.Attach(categoriaSelecionada);
-                    context.Entry(categoriaSelecionada).State = EntityState.Modified; ;
-                    await context.SaveChangesAsync();
+                    var categoriaExiste = context.Categorias.Any(x => x.Nome.Contains(categoria.Nome));
+
+                    if (!categoriaExiste)
+                    {
+                        var categoriaSelecionada = new CategoriaModel { IdCategoria = categoria.IdCategoria, Nome = categoria.Nome, Produtos = categoria.Produtos };
+                        context.Attach(categoriaSelecionada);
+                        context.Entry(categoriaSelecionada).State = EntityState.Modified; ;
+                        await context.SaveChangesAsync();
+
+                        MessageBox.Show("Categoria atualizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("A Categoria já existe.", "Erro ao adicionar Categoria", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -80,10 +99,20 @@ namespace EstoqueEFCrud.Services
             {
                 using (var context = new EstoqueContext())
                 {
-                    var categoria = new CategoriaModel { IdCategoria = id };
-                    context.Attach(categoria);
-                    context.Entry(categoria).State = EntityState.Deleted;
-                    await context.SaveChangesAsync();
+                    var contemProdutos = context.Produtos.Where(x => x.IdCategoria == id).Count();
+                    if (contemProdutos == 0)
+                    {
+                        var categoria = new CategoriaModel { IdCategoria = id };
+                        context.Attach(categoria);
+                        context.Entry(categoria).State = EntityState.Deleted;
+                        await context.SaveChangesAsync();
+
+                        MessageBox.Show("Categoria deletada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não é possível deletar a categoria, pois ela contem produtos adicionados.", "Erro ao deletar categoria", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception ex)
@@ -92,7 +121,8 @@ namespace EstoqueEFCrud.Services
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        #endregion Produtos
+
+        #endregion Categorias
 
         #region Produtos
 
@@ -105,14 +135,21 @@ namespace EstoqueEFCrud.Services
                     var connection = context.Database.GetDbConnection();
 
                     var query = @"
-                        SELECT p.*, c.Nome AS CategoriaNome
-                        From Produtos p INNER JOIN Categorias c
+                        SELECT p.*, c.IdCategoria, c.Nome
+                        FROM Produtos p INNER JOIN Categorias c
                         ON p.IdCategoria = c.IdCategoria
                         WHERE p.IdCategoria = @IdCategoria";
 
-                    var listaProdutos = await connection.QueryAsync<ProdutoModel>(
+                    var listaProdutos = await connection.QueryAsync<ProdutoModel, CategoriaModel, ProdutoModel>(
                         query,
-                        new {IdCategoria = idCategoria});
+                        (produto, categoria) =>
+                        {
+                            produto.Categoria = categoria;
+                            return produto;
+                        },
+                        new { IdCategoria = idCategoria },
+                        splitOn: "IdCategoria");
+
                     return listaProdutos.ToList();
                 }
             }
@@ -126,17 +163,29 @@ namespace EstoqueEFCrud.Services
         {
             try
             {
-                using(var context = new EstoqueContext())
+                using (var context = new EstoqueContext())
                 {
-                    var produtoAdicionado = new ProdutoModel 
-                    { 
-                        Nome = produto.Nome, 
-                        Estoque = produto.Estoque, 
-                        Preco = produto.Preco, 
-                        IdCategoria = produto.IdCategoria, 
-                    };
-                    context.Produtos.Add(produtoAdicionado);
-                    await context.SaveChangesAsync();
+                    var produtoExiste = context.Produtos.Any(x => x.Nome == produto.Nome);
+
+                    if (!produtoExiste)
+                    {
+                        var produtoAdicionado = new ProdutoModel
+                        {
+                            Nome = produto.Nome,
+                            Estoque = produto.Estoque,
+                            Preco = produto.Preco,
+                            IdCategoria = produto.IdCategoria,
+                        };
+                        context.Produtos.Add(produtoAdicionado);
+                        await context.SaveChangesAsync();
+
+                        MessageBox.Show("Produto adicionado com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("O produto já existe.", "Erro ao adicionar Produto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
                 }
             }
             catch (Exception)
@@ -150,12 +199,16 @@ namespace EstoqueEFCrud.Services
         {
             try
             {
-                using(var context = new EstoqueContext())
+                using (var context = new EstoqueContext())
                 {
+
                     var editarProduto = produto;
                     context.Attach(editarProduto);
                     context.Entry(editarProduto).State = EntityState.Modified;
                     await context.SaveChangesAsync();
+
+                    MessageBox.Show("Produto atualizado com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
             }
             catch (Exception)
@@ -175,6 +228,8 @@ namespace EstoqueEFCrud.Services
                     context.Attach(produtoDeletar);
                     context.Entry(produtoDeletar).State = EntityState.Deleted;
                     await context.SaveChangesAsync();
+
+                    MessageBox.Show("Produto deletado com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception)
@@ -188,7 +243,7 @@ namespace EstoqueEFCrud.Services
         {
             try
             {
-                using(var context = new EstoqueContext())
+                using (var context = new EstoqueContext())
                 {
                     return await context.Produtos
                         .Where(x => x.Nome.Contains(nome))

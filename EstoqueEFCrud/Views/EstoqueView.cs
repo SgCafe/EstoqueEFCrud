@@ -133,8 +133,6 @@ namespace EstoqueEFCrud.Views
                     var categoria = new CategoriaModel { Nome = form.TxNomeCat.Text };
                     await _service.AdicionarCategoria(categoria);
 
-                    MessageBox.Show("Categoria adicionada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     await AtualizarCboxCategorias();
 
                     CboxListaPrincipal.Text = categoria.Nome;
@@ -156,8 +154,6 @@ namespace EstoqueEFCrud.Views
 
                     await _service.EditarCategoria(categoriaSelecionada);
 
-                    MessageBox.Show("Categoria editada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     await AtualizarCboxCategorias();
 
                     CboxListaPrincipal.SelectedItem = categoriaSelecionada;
@@ -173,7 +169,6 @@ namespace EstoqueEFCrud.Views
                 await _service.DeletarCategoria(categoriaSelecionada);
 
                 await AtualizarCboxCategorias();
-                MessageBox.Show("Categoria deletada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -200,9 +195,7 @@ namespace EstoqueEFCrud.Views
                     await _service.AdicionarProduto(produto);
 
                     CboxListaPrincipal.SelectedItem = produto;
-                    MessageBox.Show("Produto adicionado com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     await AtualizarProdutos();
-
                 }
             }
         }
@@ -237,9 +230,7 @@ namespace EstoqueEFCrud.Views
 
                         await _service.EditarProduto(produtoAtualizado);
                         CboxListaPrincipal.SelectedIndex = formProd.CboxProd.SelectedIndex;
-                        //await AtualizarCboxCategorias();
-
-                        MessageBox.Show("Produto atualizado com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await AtualizarCboxCategorias();
                     }
                 }
             }
@@ -257,8 +248,7 @@ namespace EstoqueEFCrud.Views
                     await _service.DeletarProduto(produto);
                     await AtualizarProdutos();
 
-                    MessageBox.Show("Produto deletado com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    TxProcuraProd.Text = string.Empty;
                 }
             }
         }
