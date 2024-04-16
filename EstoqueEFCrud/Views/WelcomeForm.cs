@@ -16,6 +16,12 @@ namespace EstoqueEFCrud.Views
         {
             InitializeComponent();
             timer1.Start();
+            this.FormClosed += WelcomeForm_FormClosed;
+        }
+
+        private void WelcomeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
         int startPoint = 0;
@@ -32,6 +38,7 @@ namespace EstoqueEFCrud.Views
                 EstoqueView estoque = new EstoqueView();
                 this.Hide();
                 estoque.ShowDialog();
+                this.Close();
             }
         }
     }
