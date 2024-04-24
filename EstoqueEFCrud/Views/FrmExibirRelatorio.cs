@@ -36,17 +36,15 @@ namespace EstoqueEFCrud.Views
 
         private async void FrmExibirRelatorio_Load(object sender, EventArgs e)
         {
-            using (var context = new EstoqueContext())
-            {
-                var produtos = await _service.TodosProdutos();
+            var produtos = await _service.TodosProdutos();
 
-                RelatorioProdutos rlProdutos = new RelatorioProdutos();
+            RelatorioProdutos rlProdutos = new RelatorioProdutos();
 
-                rlProdutos.Database.Tables["EstoqueEFCrud_Models_ProdutoModel"].SetDataSource(produtos);
+            rlProdutos.Database.Tables["EstoqueEFCrud_Models_ProdutoModel"].SetDataSource(produtos);
 
-                crvReport.ReportSource = null;
-                crvReport.ReportSource = rlProdutos;
-            }
+            crvReport.ReportSource = null;
+            crvReport.ReportSource = rlProdutos;
+
         }
 
         #endregion Methods
