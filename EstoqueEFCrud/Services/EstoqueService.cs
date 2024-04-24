@@ -18,6 +18,24 @@ namespace EstoqueEFCrud.Services
 
         #region Methods
 
+        public async Task<IList<ProdutoModel>> TodosProdutos()
+        {
+            try
+            {
+                using(var context = new EstoqueContext())
+                {
+                    var listaProdutos = await context.Produtos.ToListAsync();
+
+                    return listaProdutos;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         #region Categorias
         public async Task<IList<CategoriaModel>> TodasCategorias()
         {

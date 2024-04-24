@@ -20,7 +20,6 @@ namespace EstoqueEFCrud.Views
         #region Fields
 
         private readonly IEstoqueService _service;
-        private EModoOperacao _modoOperacao;
 
         #endregion Fields
 
@@ -119,6 +118,14 @@ namespace EstoqueEFCrud.Views
             DgvProdutos.DataSource = produtoFiltrado;
             DgvProdutos.Columns["IdCategoria"].Visible = false;
             DgvProdutos.Columns["Categoria"].Visible = false;
+        }
+
+        private void AbrirRelatorio(object sender, EventArgs e)
+        {
+            using (var form = new FrmExibirRelatorio())
+            {
+                form.ShowDialog();
+            }
         }
 
         #region Categoria
@@ -254,6 +261,7 @@ namespace EstoqueEFCrud.Views
                 }
             }
         }
+
 
         #endregion Produto
 

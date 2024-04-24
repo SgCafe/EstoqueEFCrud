@@ -10,6 +10,7 @@ namespace EstoqueEFCrud.Services.Contracts
 {
     public interface IEstoqueService
     {
+        Task <IList<ProdutoModel>> TodosProdutos ();
         Task<IList<CategoriaModel>> TodasCategorias();
         Task AdicionarCategoria(CategoriaModel categoria);
         Task EditarCategoria(CategoriaModel model);

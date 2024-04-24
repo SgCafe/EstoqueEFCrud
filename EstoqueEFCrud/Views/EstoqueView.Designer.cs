@@ -52,6 +52,7 @@
             this.TxProcuraProd = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProdutos)).BeginInit();
             this.SuspendLayout();
@@ -282,11 +283,24 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "Selecione uma categoria:";
             // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(566, 66);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 33);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Relatorio";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.AbrirRelatorio);
+            // 
             // EstoqueView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(653, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.BtnDeletarCat);
             this.Controls.Add(this.BtnEditarCat);
             this.Controls.Add(this.BtnAdicionarCat);
@@ -337,5 +351,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNome;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPreco;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmEstoque;
+        private System.Windows.Forms.Button button1;
     }
 }
