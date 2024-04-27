@@ -43,16 +43,16 @@
             this.BtnEditarProduto = new System.Windows.Forms.Button();
             this.BtnAdicionarProduto = new System.Windows.Forms.Button();
             this.DgvProdutos = new System.Windows.Forms.DataGridView();
-            this.clmCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPreco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnProcurar = new System.Windows.Forms.Button();
             this.CboxListaPrincipal = new System.Windows.Forms.ComboBox();
             this.TxProcuraProd = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.clmCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPreco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmEstoque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvProdutos)).BeginInit();
             this.SuspendLayout();
@@ -181,55 +181,6 @@
             this.DgvProdutos.TabIndex = 17;
             this.DgvProdutos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDoubleClick);
             // 
-            // clmCodigo
-            // 
-            this.clmCodigo.DataPropertyName = "IdProduto";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Format = "D4";
-            this.clmCodigo.DefaultCellStyle = dataGridViewCellStyle1;
-            this.clmCodigo.HeaderText = "Código";
-            this.clmCodigo.MinimumWidth = 6;
-            this.clmCodigo.Name = "clmCodigo";
-            this.clmCodigo.ReadOnly = true;
-            this.clmCodigo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmCodigo.Width = 70;
-            // 
-            // clmNome
-            // 
-            this.clmNome.DataPropertyName = "Nome";
-            this.clmNome.HeaderText = "Nome do Produto";
-            this.clmNome.MinimumWidth = 6;
-            this.clmNome.Name = "clmNome";
-            this.clmNome.ReadOnly = true;
-            this.clmNome.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmNome.Width = 180;
-            // 
-            // clmPreco
-            // 
-            this.clmPreco.DataPropertyName = "Preco";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "C2";
-            this.clmPreco.DefaultCellStyle = dataGridViewCellStyle2;
-            this.clmPreco.HeaderText = "Preço";
-            this.clmPreco.MinimumWidth = 6;
-            this.clmPreco.Name = "clmPreco";
-            this.clmPreco.ReadOnly = true;
-            this.clmPreco.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmPreco.Width = 125;
-            // 
-            // clmEstoque
-            // 
-            this.clmEstoque.DataPropertyName = "Estoque";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "D4";
-            this.clmEstoque.DefaultCellStyle = dataGridViewCellStyle3;
-            this.clmEstoque.HeaderText = "Estoque";
-            this.clmEstoque.MinimumWidth = 6;
-            this.clmEstoque.Name = "clmEstoque";
-            this.clmEstoque.ReadOnly = true;
-            this.clmEstoque.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.clmEstoque.Width = 125;
-            // 
             // BtnProcurar
             // 
             this.BtnProcurar.BackColor = System.Drawing.Color.White;
@@ -295,6 +246,56 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.AbrirRelatorio);
             // 
+            // clmCodigo
+            // 
+            this.clmCodigo.DataPropertyName = "IdProduto";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Format = "D4";
+            this.clmCodigo.DefaultCellStyle = dataGridViewCellStyle1;
+            this.clmCodigo.HeaderText = "Código";
+            this.clmCodigo.MinimumWidth = 6;
+            this.clmCodigo.Name = "clmCodigo";
+            this.clmCodigo.ReadOnly = true;
+            this.clmCodigo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmCodigo.Width = 70;
+            // 
+            // clmNome
+            // 
+            this.clmNome.DataPropertyName = "Nome";
+            this.clmNome.HeaderText = "Nome do Produto";
+            this.clmNome.MinimumWidth = 6;
+            this.clmNome.Name = "clmNome";
+            this.clmNome.ReadOnly = true;
+            this.clmNome.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmNome.Width = 180;
+            // 
+            // clmPreco
+            // 
+            this.clmPreco.DataPropertyName = "Preco";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "C2";
+            this.clmPreco.DefaultCellStyle = dataGridViewCellStyle2;
+            this.clmPreco.HeaderText = "Preço";
+            this.clmPreco.MinimumWidth = 6;
+            this.clmPreco.Name = "clmPreco";
+            this.clmPreco.ReadOnly = true;
+            this.clmPreco.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmPreco.Width = 125;
+            // 
+            // clmEstoque
+            // 
+            this.clmEstoque.DataPropertyName = "Estoque";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "N3";
+            dataGridViewCellStyle3.NullValue = null;
+            this.clmEstoque.DefaultCellStyle = dataGridViewCellStyle3;
+            this.clmEstoque.HeaderText = "Estoque";
+            this.clmEstoque.MinimumWidth = 6;
+            this.clmEstoque.Name = "clmEstoque";
+            this.clmEstoque.ReadOnly = true;
+            this.clmEstoque.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.clmEstoque.Width = 125;
+            // 
             // EstoqueView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,10 +348,10 @@
         private System.Windows.Forms.TextBox TxProcuraProd;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmCodigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNome;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPreco;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmEstoque;
-        private System.Windows.Forms.Button button1;
     }
 }

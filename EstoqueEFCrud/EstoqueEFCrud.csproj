@@ -381,9 +381,16 @@
       <DependentUpon>RelatorioProdutos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Repository\CategoriaRepository.cs" />
+    <Compile Include="Repository\Contracts\ICategoriaRepository.cs" />
+    <Compile Include="Repository\Contracts\IProdutoRepository.cs" />
     <Compile Include="Repository\EstoqueContext.cs" />
-    <Compile Include="Services\Contracts\IEstoqueService.cs" />
-    <Compile Include="Services\EstoqueService.cs" />
+    <Compile Include="Repository\ProdutoRepository.cs" />
+    <Compile Include="Services\CategoriaService.cs" />
+    <Compile Include="Services\Contracts\ICategoriaService.cs" />
+    <Compile Include="Services\Contracts\IProdutoService.cs" />
+    <Compile Include="Services\ProdutoService.cs" />
+    <Compile Include="Util\MessageBoxUtil.cs" />
     <Compile Include="Views\EstoqueView.cs">
       <SubType>Form</SubType>
     </Compile>

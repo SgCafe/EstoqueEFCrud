@@ -14,18 +14,22 @@ namespace EstoqueEFCrud.Views
 {
     public partial class FormCadastrarProd : Form
     {
-        private readonly IEstoqueService _serice;
+        #region Properties
+
+        private readonly ICategoriaService _categoriaService;
+
+        #endregion Properties
 
         public FormCadastrarProd()
         {
             InitializeComponent();
-            _serice = new EstoqueService();
+            _categoriaService = new CategoriaService();
             AtualizarCboxProd();
         }
 
         private async void AtualizarCboxProd()
         {
-            var produtos = await _serice.TodasCategorias();
+            var produtos = await _categoriaService.ObterTodos();
             CboxProd.DataSource = produtos;
             CboxProd.DisplayMember = "Nome";
             CboxProd.ValueMember = "IdCategoria";

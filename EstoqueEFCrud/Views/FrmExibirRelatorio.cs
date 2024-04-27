@@ -1,4 +1,5 @@
-﻿using EstoqueEFCrud.Relatorios;
+﻿using EstoqueEFCrud.Models;
+using EstoqueEFCrud.Relatorios;
 using EstoqueEFCrud.Repository;
 using EstoqueEFCrud.Services;
 using EstoqueEFCrud.Services.Contracts;
@@ -18,7 +19,7 @@ namespace EstoqueEFCrud.Views
     {
         #region Fields
 
-        private readonly IEstoqueService _service;
+        private readonly IProdutoService _produtoService;
 
         #endregion Fields
 
@@ -27,7 +28,7 @@ namespace EstoqueEFCrud.Views
         public FrmExibirRelatorio()
         {
             InitializeComponent();
-            _service = new EstoqueService();
+            _produtoService = new ProdutoService();
         }
 
         #endregion Constructors
@@ -36,7 +37,7 @@ namespace EstoqueEFCrud.Views
 
         private async void FrmExibirRelatorio_Load(object sender, EventArgs e)
         {
-            var produtos = await _service.TodosProdutos();
+            var produtos = await _produtoService.TodosProdutos();
 
             RelatorioProdutos rlProdutos = new RelatorioProdutos();
 
